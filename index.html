@@ -438,47 +438,43 @@
     </div>
   </div>
 
-  <script>
-    // ✅ ตั้งรหัสผ่าน “รหัสเดียวทั้งทีม” ตรงนี้
-    const TEAM_PASSWORD = "Start123";
+ <script>
+  // ✅ รหัสเดียวทั้งทีม
+  const TEAM_PASSWORD = "Start123";
 
-    const KEY = "tjc_team_unlocked";
-    const lockScreen = document.getElementById("lockScreen");
-    const pw = document.getElementById("pw");
-    const err = document.getElementById("err");
-    const btnUnlock = document.getElementById("btnUnlock");
-    const btnLogout = document.getElementById("btnLogout");
+  const lockScreen = document.getElementById("lockScreen");
+  const pw = document.getElementById("pw");
+  const err = document.getElementById("err");
+  const btnUnlock = document.getElementById("btnUnlock");
+  const btnLogout = document.getElementById("btnLogout");
 
-    function hideLock(){ lockScreen.style.display = "none"; }
-    function showLock(){ lockScreen.style.display = "flex"; }
+  function hideLock(){ lockScreen.style.display = "none"; }
+  function showLock(){ lockScreen.style.display = "flex"; }
 
-    if (localStorage.getItem(KEY) === "1") { hideLock(); }
-    else { showLock(); }
+  // ✅ บังคับให้ล็อกทุกครั้งที่เข้า/รีเฟรชหน้า
+  showLock();
+  btnLogout.style.display = "none"; // ไม่ต้องมี logout เพราะต้องล็อกทุกครั้งอยู่แล้ว
 
-    function unlock(){
-      err.style.display = "none";
-      const val = (pw.value || "").trim();
-      if(val === TEAM_PASSWORD){
-        localStorage.setItem(KEY, "1");
-        hideLock();
-        btnLogout.style.display = "block";
-      } else {
-        err.style.display = "block";
-      }
+  function unlock(){
+    err.style.display = "none";
+    const val = (pw.value || "").trim();
+    if(val === TEAM_PASSWORD){
+      hideLock();
+      pw.value = "";
+    } else {
+      err.style.display = "block";
     }
+  }
 
-    pw.addEventListener("keydown", (e) => {
-      if(e.key === "Enter") unlock();
-    });
-    btnUnlock.addEventListener("click", unlock);
+  // Enter เพื่อเข้าสู่ระบบ
+  pw.addEventListener("keydown", (e) => {
+    if(e.key === "Enter") unlock();
+  });
 
-    if (localStorage.getItem(KEY) === "1") {
-      btnLogout.style.display = "block";
-    }
-    btnLogout.addEventListener("click", () => {
-      localStorage.removeItem(KEY);
-      location.reload();
-    });
-  </script>
+  btnUnlock.addEventListener("click", unlock);
+
+  // ✅ ถ้า user กดรีเฟรช/กลับมาใหม่ จะต้องกรอกใหม่อยู่แล้ว
+</script>
 </body>
 </html>
+
