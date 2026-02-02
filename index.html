@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="th">
 <head>
+  <button id="logoutBtn" class="btn" style="display:none;">
+  Log out
+</button>
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TJC Group | แจ้งจัดงานทีมจัดส่ง</title>
@@ -439,25 +443,32 @@
   </div>
 
  <script>
-  // ✅ รหัสเดียวทั้งทีม
+  // 🔐 รหัสเดียวทั้งทีม
   const TEAM_PASSWORD = "Start123";
 
   const lockScreen = document.getElementById("lockScreen");
   const pw = document.getElementById("pw");
   const err = document.getElementById("err");
   const btnUnlock = document.getElementById("btnUnlock");
-  const btnLogout = document.getElementById("btnLogout");
+  const logoutBtn = document.getElementById("logoutBtn");
 
-  function hideLock(){ lockScreen.style.display = "none"; }
-  function showLock(){ lockScreen.style.display = "flex"; }
+  function showLock(){
+    lockScreen.style.display = "flex";
+    if (logoutBtn) logoutBtn.style.display = "none";
+  }
 
-  // ✅ บังคับให้ล็อกทุกครั้งที่เข้า/รีเฟรชหน้า
+  function hideLock(){
+    lockScreen.style.display = "none";
+    if (logoutBtn) logoutBtn.style.display = "inline-flex";
+  }
+
+  // ✅ บังคับให้ต้อง login ทุกครั้ง
   showLock();
-  btnLogout.style.display = "none"; // ไม่ต้องมี logout เพราะต้องล็อกทุกครั้งอยู่แล้ว
 
   function unlock(){
     err.style.display = "none";
     const val = (pw.value || "").trim();
+
     if(val === TEAM_PASSWORD){
       hideLock();
       pw.value = "";
@@ -466,15 +477,21 @@
     }
   }
 
-  // Enter เพื่อเข้าสู่ระบบ
+  // Enter เพื่อ login
   pw.addEventListener("keydown", (e) => {
     if(e.key === "Enter") unlock();
   });
 
   btnUnlock.addEventListener("click", unlock);
 
-  // ✅ ถ้า user กดรีเฟรช/กลับมาใหม่ จะต้องกรอกใหม่อยู่แล้ว
+  // 🚪 Log out
+  if (logoutBtn){
+    logoutBtn.addEventListener("click", () => {
+      showLock();
+    });
+  }
 </script>
 </body>
 </html>
+
 
