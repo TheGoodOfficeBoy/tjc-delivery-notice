@@ -442,9 +442,12 @@
     </div>
   </div>
 
- <script>
+<script>
   // 🔐 รหัสเดียวทั้งทีม
   const TEAM_PASSWORD = "Start123";
+
+  // key สำหรับ session
+  const SESSION_KEY = "tjc_logged_in";
 
   const lockScreen = document.getElementById("lockScreen");
   const pw = document.getElementById("pw");
@@ -462,14 +465,19 @@
     if (logoutBtn) logoutBtn.style.display = "inline-flex";
   }
 
-  // ✅ บังคับให้ต้อง login ทุกครั้ง
-  showLock();
+  // ✅ ตรวจสถานะเมื่อโหลดหน้า
+  if (sessionStorage.getItem(SESSION_KEY) === "1") {
+    hideLock();          // เคย login แล้ว → ไม่ต้อง login ใหม่ตอน refresh
+  } else {
+    showLock();          // ยังไม่ login → แสดงหน้า login
+  }
 
   function unlock(){
     err.style.display = "none";
     const val = (pw.value || "").trim();
 
     if(val === TEAM_PASSWORD){
+      sessionStorage.setItem(SESSION_KEY, "1"); // จำเฉพาะ session นี้
       hideLock();
       pw.value = "";
     } else {
@@ -477,7 +485,7 @@
     }
   }
 
-  // Enter เพื่อ login
+  // Enter เพื่อ Login
   pw.addEventListener("keydown", (e) => {
     if(e.key === "Enter") unlock();
   });
@@ -487,11 +495,13 @@
   // 🚪 Log out
   if (logoutBtn){
     logoutBtn.addEventListener("click", () => {
+      sessionStorage.removeItem(SESSION_KEY);
       showLock();
     });
   }
 </script>
 </body>
 </html>
+
 
 
