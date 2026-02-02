@@ -357,6 +357,114 @@
       });
     }
   </script>
+  <!-- ✅ Simple Password Gate (Single password for whole team) -->
+<div id="lockScreen" style="
+  position:fixed; inset:0; z-index:9999;
+  display:flex; align-items:center; justify-content:center;
+  background: rgba(0,0,0,.75); backdrop-filter: blur(8px);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Thai', Arial, sans-serif;
+">
+  <div style="
+    width:min(420px, 92vw);
+    background: rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:16px;
+    padding:18px;
+    color:#fff;
+    box-shadow: 0 18px 60px rgba(0,0,0,.35);
+  ">
+    <div style="display:flex; gap:12px; align-items:center; margin-bottom:10px;">
+      <div style="width:42px;height:42px;border-radius:12px;background:#3B82F6;"></div>
+      <div>
+        <div style="font-weight:700; font-size:16px;">TJC Group • Protected Page</div>
+        <div style="opacity:.8; font-size:13px;">กรอกรหัสผ่านเพื่อเข้าหน้าเว็บ</div>
+      </div>
+    </div>
+
+    <input id="pw" type="password" placeholder="Password" autocomplete="current-password" style="
+      width:100%; padding:12px 12px;
+      border-radius:12px; border:1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.25); color:#fff; outline:none;
+      margin-top:10px;
+    " />
+
+    <button id="btnUnlock" style="
+      width:100%; margin-top:10px; padding:12px 12px;
+      border-radius:12px; border:1px solid rgba(59,130,246,.55);
+      background: rgba(59,130,246,.25); color:#fff;
+      font-weight:700; cursor:pointer;
+    ">เข้าสู่ระบบ</button>
+
+    <button id="btnLogout" style="
+      width:100%; margin-top:10px; padding:12px 12px;
+      border-radius:12px; border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06); color:#fff;
+      font-weight:600; cursor:pointer; display:none;
+    ">ล้างการเข้าสู่ระบบ (Logout)</button>
+
+    <div id="err" style="margin-top:10px; color:#FFB4B4; font-size:13px; display:none;">
+      รหัสผ่านไม่ถูกต้อง
+    </div>
+
+    <div style="margin-top:10px; opacity:.7; font-size:12px; line-height:1.5;">
+      *วิธีนี้เป็นการกันเข้าแบบง่าย (ฝั่งเว็บ) เหมาะกับการ “กันคนทั่วไป” ไม่เหมาะกับข้อมูลลับมาก
+    </div>
+  </div>
+</div>
+
+<script>
+  // ✅ ตั้งรหัสผ่าน “รหัสเดียวทั้งทีม” ตรงนี้
+  const TEAM_PASSWORD = "Start123"; // <-- เปลี่ยนได้เลย
+
+  const KEY = "tjc_team_unlocked";
+  const lockScreen = document.getElementById("lockScreen");
+  const pw = document.getElementById("pw");
+  const err = document.getElementById("err");
+  const btnUnlock = document.getElementById("btnUnlock");
+  const btnLogout = document.getElementById("btnLogout");
+
+  function hideLock(){
+    lockScreen.style.display = "none";
+  }
+  function showLock(){
+    lockScreen.style.display = "flex";
+  }
+
+  // ✅ ถ้าเคยปลดล็อกแล้วในเครื่องเดิม จะไม่ถามซ้ำ
+  if (localStorage.getItem(KEY) === "1") {
+    hideLock();
+  } else {
+    showLock();
+  }
+
+  function unlock(){
+    err.style.display = "none";
+    const val = (pw.value || "").trim();
+    if(val === TEAM_PASSWORD){
+      localStorage.setItem(KEY, "1");
+      hideLock();
+    } else {
+      err.style.display = "block";
+    }
+  }
+
+  // Enter เพื่อเข้าสู่ระบบ
+  pw.addEventListener("keydown", (e) => {
+    if(e.key === "Enter") unlock();
+  });
+
+  btnUnlock.addEventListener("click", unlock);
+
+  // แสดงปุ่ม logout เมื่อปลดล็อกแล้ว (เผื่ออยากล้าง)
+  if (localStorage.getItem(KEY) === "1") {
+    btnLogout.style.display = "block";
+  }
+  btnLogout.addEventListener("click", () => {
+    localStorage.removeItem(KEY);
+    location.reload();
+  });
+</script>
 </body>
 </html>
+
 
