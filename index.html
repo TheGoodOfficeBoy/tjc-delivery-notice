@@ -1,31 +1,24 @@
 <!doctype html>
 <html lang="th">
 <head>
-  <a href="https://tjc.co.th/" target="_blank" style="text-decoration:none;">
-  <img
-    src="TJC_320x320.png"
-    alt="TJC Group"
-    style="
-      height:60px;
-      width:auto;
-      display:block;
-    "
-  />
-</a>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TJC Group | แจ้งจัดงานทีมจัดส่ง</title>
   <meta name="description" content="คำสั่งและแบบฟอร์มแจ้งงานสำหรับทีมจัดส่ง TJC Group พร้อมลิงก์และ QR Code" />
   <style>
     :root{
-      --bg: #0b1220;
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.08);
+      /* ✅ Pink Theme */
+      --bg1: #2a0a1a;
+      --bg2: #1a0a14;
+      --card: rgba(255,255,255,.08);
+      --card2: rgba(255,255,255,.10);
       --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.68);
-      --line: rgba(255,255,255,.12);
-      --accent: #3B82F6;
-      --accent2:#22C55E;
+      --muted: rgba(255,255,255,.70);
+      --line: rgba(255,255,255,.14);
+
+      --accent: #ec4899;   /* pink-500 */
+      --accent2:#fb7185;   /* rose-400 */
+
       --shadow: 0 18px 60px rgba(0,0,0,.35);
       --radius: 18px;
     }
@@ -35,12 +28,14 @@
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Thai", "Prompt", Arial, sans-serif;
       color:var(--text);
       background:
-        radial-gradient(1200px 600px at 15% 10%, rgba(59,130,246,.35), transparent 60%),
-        radial-gradient(900px 500px at 90% 30%, rgba(34,197,94,.25), transparent 55%),
-        linear-gradient(180deg, #060b16, #0b1220 45%, #070b14);
+        radial-gradient(1200px 600px at 15% 10%, rgba(236,72,153,.35), transparent 60%),
+        radial-gradient(900px 520px at 90% 28%, rgba(251,113,133,.25), transparent 55%),
+        radial-gradient(700px 450px at 70% 90%, rgba(244,114,182,.18), transparent 55%),
+        linear-gradient(180deg, var(--bg2), var(--bg1) 45%, #12060f);
       min-height:100vh;
     }
     a{color:inherit}
+
     .wrap{
       max-width: 980px;
       margin: 0 auto;
@@ -56,12 +51,30 @@
     .brand{
       display:flex; gap:12px; align-items:center;
     }
+
+    /* ✅ Logo link */
+    .brand-logo{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      text-decoration:none;
+    }
+    .brand-logo img{
+      height:60px;
+      width:auto;
+      display:block;
+      filter: drop-shadow(0 10px 28px rgba(0,0,0,.35));
+      border-radius: 12px;
+    }
+
+    /* ✅ Small icon box (pink gradient) */
     .logo{
       width:44px; height:44px;
       border-radius: 14px;
-      background: linear-gradient(135deg, rgba(59,130,246,.95), rgba(34,197,94,.85));
+      background: linear-gradient(135deg, rgba(236,72,153,.95), rgba(251,113,133,.85));
       box-shadow: var(--shadow);
     }
+
     .title h1{
       font-size: 20px;
       margin: 0;
@@ -76,14 +89,14 @@
       font-size: 12px;
       padding: 8px 10px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
+      background: rgba(255,255,255,.05);
       border-radius: 999px;
       color: var(--muted);
     }
     .hero{
       margin-top: 10px;
       border: 1px solid var(--line);
-      background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      background: linear-gradient(135deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
       border-radius: var(--radius);
       padding: 18px 16px;
       box-shadow: var(--shadow);
@@ -133,6 +146,7 @@
       border: 1px solid var(--line);
       color: var(--muted);
       white-space:nowrap;
+      background: rgba(255,255,255,.04);
     }
     .card .body{
       padding: 14px;
@@ -159,21 +173,27 @@
       padding: 10px 12px;
       border-radius: 12px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,.06);
+      background: rgba(255,255,255,.07);
       text-decoration:none;
       font-weight: 600;
       font-size: 13px;
       transition: transform .08s ease, background .15s ease, border-color .15s ease;
+      color: rgba(255,255,255,.92);
     }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.20); }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.22); }
+
+    /* ✅ Pink primary */
     .btn.primary{
-      background: rgba(59,130,246,.22);
-      border-color: rgba(59,130,246,.45);
+      background: rgba(236,72,153,.22);
+      border-color: rgba(236,72,153,.45);
     }
+
+    /* ✅ Rose success (still "good" but in pink family) */
     .btn.success{
-      background: rgba(34,197,94,.18);
-      border-color: rgba(34,197,94,.40);
+      background: rgba(251,113,133,.18);
+      border-color: rgba(251,113,133,.40);
     }
+
     .muted{
       color: var(--muted);
       font-size: 13px;
@@ -182,12 +202,12 @@
     }
     .linkbox{
       margin-top: 10px;
-      border: 1px dashed rgba(255,255,255,.20);
+      border: 1px dashed rgba(255,255,255,.22);
       border-radius: 14px;
       padding: 10px 12px;
-      background: rgba(0,0,0,.15);
+      background: rgba(0,0,0,.18);
       font-size: 12px;
-      color: rgba(255,255,255,.82);
+      color: rgba(255,255,255,.86);
       word-break: break-all;
     }
     .qr{
@@ -197,7 +217,7 @@
       padding: 12px;
       border-radius: 16px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
+      background: rgba(255,255,255,.05);
       min-height: 220px;
     }
     .qr img{
@@ -209,14 +229,14 @@
     }
     footer{
       margin-top: 16px;
-      color: rgba(255,255,255,.55);
+      color: rgba(255,255,255,.60);
       font-size: 12px;
       text-align:center;
     }
     .note{
       margin-top: 14px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
+      background: rgba(255,255,255,.05);
       border-radius: var(--radius);
       padding: 12px 14px;
       color: var(--muted);
@@ -227,9 +247,9 @@
       display:inline-block;
       padding: 2px 8px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.05);
-      color: rgba(255,255,255,.85);
+      border: 1px solid rgba(255,255,255,.20);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.90);
       font-size: 12px;
     }
   </style>
@@ -240,6 +260,12 @@
     <header>
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
+
+        <!-- ✅ moved logo link into body/header (correct HTML) -->
+        <a class="brand-logo" href="https://tjc.co.th/" target="_blank" rel="noopener">
+          <img src="TJC_320x320.png" alt="TJC Group" />
+        </a>
+
         <div class="title">
           <h1>คำสั่ง TJC Group</h1>
           <p>การแจ้งจัดงานของทีมจัดส่ง</p>
@@ -346,7 +372,6 @@
       navigator.clipboard.writeText(url).then(()=>{
         alert("คัดลอกลิงก์เรียบร้อยแล้ว ✅");
       }).catch(()=>{
-        // fallback
         const ta = document.createElement("textarea");
         ta.value = url;
         document.body.appendChild(ta);
@@ -357,117 +382,103 @@
       });
     }
   </script>
+
   <!-- ✅ Simple Password Gate (Single password for whole team) -->
-<div id="lockScreen" style="
-  position:fixed; inset:0; z-index:9999;
-  display:flex; align-items:center; justify-content:center;
-  background: rgba(0,0,0,.75); backdrop-filter: blur(8px);
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Thai', Arial, sans-serif;
-">
-  <div style="
-    width:min(420px, 92vw);
-    background: rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.15);
-    border-radius:16px;
-    padding:18px;
-    color:#fff;
-    box-shadow: 0 18px 60px rgba(0,0,0,.35);
+  <div id="lockScreen" style="
+    position:fixed; inset:0; z-index:9999;
+    display:flex; align-items:center; justify-content:center;
+    background: rgba(20,0,10,.72); backdrop-filter: blur(10px);
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Thai', Arial, sans-serif;
   ">
-    <div style="display:flex; gap:12px; align-items:center; margin-bottom:10px;">
-      <div style="width:42px;height:42px;border-radius:12px;background:#3B82F6;"></div>
-      <div>
-        <div style="font-weight:700; font-size:16px;">TJC Group • Protected Page</div>
-        <div style="opacity:.8; font-size:13px;">กรอกรหัสผ่านเพื่อเข้าหน้าเว็บ</div>
+    <div style="
+      width:min(420px, 92vw);
+      background: rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:16px;
+      padding:18px;
+      color:#fff;
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+    ">
+      <div style="display:flex; gap:12px; align-items:center; margin-bottom:10px;">
+        <div style="width:42px;height:42px;border-radius:12px;background: linear-gradient(135deg, rgba(236,72,153,.95), rgba(251,113,133,.85));"></div>
+        <div>
+          <div style="font-weight:700; font-size:16px;">TJC Group • Protected Page</div>
+          <div style="opacity:.8; font-size:13px;">กรอกรหัสผ่านเพื่อเข้าหน้าเว็บ</div>
+        </div>
+      </div>
+
+      <input id="pw" type="password" placeholder="Password" autocomplete="current-password" style="
+        width:100%; padding:12px 12px;
+        border-radius:12px; border:1px solid rgba(255,255,255,.18);
+        background: rgba(0,0,0,.25); color:#fff; outline:none;
+        margin-top:10px;
+      " />
+
+      <button id="btnUnlock" style="
+        width:100%; margin-top:10px; padding:12px 12px;
+        border-radius:12px; border:1px solid rgba(236,72,153,.55);
+        background: rgba(236,72,153,.22); color:#fff;
+        font-weight:700; cursor:pointer;
+      ">เข้าสู่ระบบ</button>
+
+      <button id="btnLogout" style="
+        width:100%; margin-top:10px; padding:12px 12px;
+        border-radius:12px; border:1px solid rgba(255,255,255,.18);
+        background: rgba(255,255,255,.07); color:#fff;
+        font-weight:600; cursor:pointer; display:none;
+      ">ล้างการเข้าสู่ระบบ (Logout)</button>
+
+      <div id="err" style="margin-top:10px; color:#FFB4B4; font-size:13px; display:none;">
+        รหัสผ่านไม่ถูกต้อง
+      </div>
+
+      <div style="margin-top:10px; opacity:.7; font-size:12px; line-height:1.5;">
+        *วิธีนี้เป็นการกันเข้าแบบง่าย (ฝั่งเว็บ) เหมาะกับการ “กันคนทั่วไป” ไม่เหมาะกับข้อมูลลับมาก
       </div>
     </div>
-
-    <input id="pw" type="password" placeholder="Password" autocomplete="current-password" style="
-      width:100%; padding:12px 12px;
-      border-radius:12px; border:1px solid rgba(255,255,255,.18);
-      background: rgba(0,0,0,.25); color:#fff; outline:none;
-      margin-top:10px;
-    " />
-
-    <button id="btnUnlock" style="
-      width:100%; margin-top:10px; padding:12px 12px;
-      border-radius:12px; border:1px solid rgba(59,130,246,.55);
-      background: rgba(59,130,246,.25); color:#fff;
-      font-weight:700; cursor:pointer;
-    ">เข้าสู่ระบบ</button>
-
-    <button id="btnLogout" style="
-      width:100%; margin-top:10px; padding:12px 12px;
-      border-radius:12px; border:1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.06); color:#fff;
-      font-weight:600; cursor:pointer; display:none;
-    ">ล้างการเข้าสู่ระบบ (Logout)</button>
-
-    <div id="err" style="margin-top:10px; color:#FFB4B4; font-size:13px; display:none;">
-      รหัสผ่านไม่ถูกต้อง
-    </div>
-
-    <div style="margin-top:10px; opacity:.7; font-size:12px; line-height:1.5;">
-      *วิธีนี้เป็นการกันเข้าแบบง่าย (ฝั่งเว็บ) เหมาะกับการ “กันคนทั่วไป” ไม่เหมาะกับข้อมูลลับมาก
-    </div>
   </div>
-</div>
 
-<script>
-  // ✅ ตั้งรหัสผ่าน “รหัสเดียวทั้งทีม” ตรงนี้
-  const TEAM_PASSWORD = "Start123"; // <-- เปลี่ยนได้เลย
+  <script>
+    // ✅ ตั้งรหัสผ่าน “รหัสเดียวทั้งทีม” ตรงนี้
+    const TEAM_PASSWORD = "Start123";
 
-  const KEY = "tjc_team_unlocked";
-  const lockScreen = document.getElementById("lockScreen");
-  const pw = document.getElementById("pw");
-  const err = document.getElementById("err");
-  const btnUnlock = document.getElementById("btnUnlock");
-  const btnLogout = document.getElementById("btnLogout");
+    const KEY = "tjc_team_unlocked";
+    const lockScreen = document.getElementById("lockScreen");
+    const pw = document.getElementById("pw");
+    const err = document.getElementById("err");
+    const btnUnlock = document.getElementById("btnUnlock");
+    const btnLogout = document.getElementById("btnLogout");
 
-  function hideLock(){
-    lockScreen.style.display = "none";
-  }
-  function showLock(){
-    lockScreen.style.display = "flex";
-  }
+    function hideLock(){ lockScreen.style.display = "none"; }
+    function showLock(){ lockScreen.style.display = "flex"; }
 
-  // ✅ ถ้าเคยปลดล็อกแล้วในเครื่องเดิม จะไม่ถามซ้ำ
-  if (localStorage.getItem(KEY) === "1") {
-    hideLock();
-  } else {
-    showLock();
-  }
+    if (localStorage.getItem(KEY) === "1") { hideLock(); }
+    else { showLock(); }
 
-  function unlock(){
-    err.style.display = "none";
-    const val = (pw.value || "").trim();
-    if(val === TEAM_PASSWORD){
-      localStorage.setItem(KEY, "1");
-      hideLock();
-    } else {
-      err.style.display = "block";
+    function unlock(){
+      err.style.display = "none";
+      const val = (pw.value || "").trim();
+      if(val === TEAM_PASSWORD){
+        localStorage.setItem(KEY, "1");
+        hideLock();
+        btnLogout.style.display = "block";
+      } else {
+        err.style.display = "block";
+      }
     }
-  }
 
-  // Enter เพื่อเข้าสู่ระบบ
-  pw.addEventListener("keydown", (e) => {
-    if(e.key === "Enter") unlock();
-  });
+    pw.addEventListener("keydown", (e) => {
+      if(e.key === "Enter") unlock();
+    });
+    btnUnlock.addEventListener("click", unlock);
 
-  btnUnlock.addEventListener("click", unlock);
-
-  // แสดงปุ่ม logout เมื่อปลดล็อกแล้ว (เผื่ออยากล้าง)
-  if (localStorage.getItem(KEY) === "1") {
-    btnLogout.style.display = "block";
-  }
-  btnLogout.addEventListener("click", () => {
-    localStorage.removeItem(KEY);
-    location.reload();
-  });
-</script>
+    if (localStorage.getItem(KEY) === "1") {
+      btnLogout.style.display = "block";
+    }
+    btnLogout.addEventListener("click", () => {
+      localStorage.removeItem(KEY);
+      location.reload();
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
