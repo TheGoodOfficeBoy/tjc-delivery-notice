@@ -1,9 +1,6 @@
 <!doctype html>
 <html lang="th">
 <head>
-  <button id="logoutBtn" class="btn" style="display:none;">
-  Log out
-</button>
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -443,65 +440,10 @@
   </div>
 
 <script>
-  // 🔐 รหัสเดียวทั้งทีม
-  const TEAM_PASSWORD = "Start123";
-
-  // key สำหรับ session
-  const SESSION_KEY = "tjc_logged_in";
-
-  const lockScreen = document.getElementById("lockScreen");
-  const pw = document.getElementById("pw");
-  const err = document.getElementById("err");
-  const btnUnlock = document.getElementById("btnUnlock");
-  const logoutBtn = document.getElementById("logoutBtn");
-
-  function showLock(){
-    lockScreen.style.display = "flex";
-    if (logoutBtn) logoutBtn.style.display = "none";
-  }
-
-  function hideLock(){
-    lockScreen.style.display = "none";
-    if (logoutBtn) logoutBtn.style.display = "inline-flex";
-  }
-
-  // ✅ ตรวจสถานะเมื่อโหลดหน้า
-  if (sessionStorage.getItem(SESSION_KEY) === "1") {
-    hideLock();          // เคย login แล้ว → ไม่ต้อง login ใหม่ตอน refresh
-  } else {
-    showLock();          // ยังไม่ login → แสดงหน้า login
-  }
-
-  function unlock(){
-    err.style.display = "none";
-    const val = (pw.value || "").trim();
-
-    if(val === TEAM_PASSWORD){
-      sessionStorage.setItem(SESSION_KEY, "1"); // จำเฉพาะ session นี้
-      hideLock();
-      pw.value = "";
-    } else {
-      err.style.display = "block";
-    }
-  }
-
-  // Enter เพื่อ Login
-  pw.addEventListener("keydown", (e) => {
-    if(e.key === "Enter") unlock();
-  });
-
-  btnUnlock.addEventListener("click", unlock);
-
-  // 🚪 Log out
-  if (logoutBtn){
-    logoutBtn.addEventListener("click", () => {
-      sessionStorage.removeItem(SESSION_KEY);
-      showLock();
-    });
-  }
 </script>
 </body>
 </html>
+
 
 
 
